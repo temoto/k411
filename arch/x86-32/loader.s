@@ -29,5 +29,6 @@ loader:
 
    cli
 hang:
-   hlt                    # halt machine should kernel return
+   nop
+   #hlt # halt machine should kernel return
    jmp   hang
