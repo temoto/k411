@@ -1,5 +1,5 @@
 #!/bin/sh
 
-rm boot-x86-32.img
+rm -f boot-x86-32.img
 make clean kernel-x86-32.bin
 grub-mkrescue --output=boot-x86-32.img kernel-x86-32.bin
