@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -f boot-x86-32.img
+make CC=~/cross/bin/i586-elf-gcc AS=~/cross/bin/i586-elf-gcc LD=~/cross/bin/i586-elf-gcc clean kernel-x86-32.bin
+grub-mkrescue --output=boot-x86-32.img kernel-x86-32.bin

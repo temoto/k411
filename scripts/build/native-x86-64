@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -f boot-x86-64.img
+make CFLAGS="-m64 -ffreestanding -mcmodel=large -mno-red-zone " clean kernel-x86-64.bin
+grub-mkrescue --output=boot-x86-64.img kernel-x86-64.bin
