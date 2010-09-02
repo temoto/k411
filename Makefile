@@ -17,6 +17,10 @@ all: kernel-x86-32.bin
 clean:
 	@rm -f kernel-*.bin arch/*/loader.o ${objs}
 
+test:
+	@echo "No tests ATM, sorry."
+	@exit 1
+
 kernel-x86-32.bin: ${objs} arch/x86-32/loader.o
 	$(LD) $(LDFLAGS) -T arch/x86-32/linker.ld -o $@ $^
 
