@@ -1,5 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+: ${CC="i586-elf-gcc"}
+if which "${CC}" > /dev/null ; then : ; else
+    echo "${CC} is not found on your PATH." >&2
+    exit 1
+fi
 
 rm -f boot-x86-32.img
-make CC=~/cross/bin/i586-elf-gcc AS=~/cross/bin/i586-elf-gcc LD=~/cross/bin/i586-elf-gcc clean kernel-x86-32.bin
+make CC="${CC}" AS="${CC}" LD="${CC}" clean kernel-x86-32.bin
 grub-mkrescue --output=boot-x86-32.img kernel-x86-32.bin
