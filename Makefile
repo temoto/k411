@@ -1,18 +1,37 @@
 # k411 Makefile
 #
 
-objs := main.o
+# General
+# ^^^^^^^
 
 CFLAGS := $(CFLAGS) -g -std=c99 -Wall -Wextra -Werror \
 	-nostdlib -nostartfiles -nodefaultlibs
 ASFLAGS := $(ASFLAGS) -g --warn
+# Architecture
+# ^^^^^^^^^^^^
+
+ARCH := $(shell uname -m | sed -e s/i.86/i386/)
+ifeq ($(ARCH),x86_64)
+  ARCH := i386
+endif
+
+ifeq ("$(ARCH)", "i386")
+  CFLAGS  += -m32
+  LDFLAGS += -melf_i386
+  ASFLAGS += --32
+else
+  $(error Unsupported ARCH: $(ARCH))
+endif
+
+
+objs    := main.o
 
 
 .PHONY: clean test
 
 default: clean all
 
-all: kernel-x86-32.bin
+all: kernel-$(ARCH).bin
 
 clean:
 	@rm -f kernel-*.bin arch/*/loader.o ${objs}
@@ -21,8 +40,5 @@ test:
 	@echo "No tests ATM, sorry."
 	@exit 1
 
-kernel-x86-32.bin: ${objs} arch/x86-32/loader.o
-	$(LD) $(LDFLAGS) -T arch/x86-32/linker.ld -o $@ $^
-
-kernel-x86-64.bin: ${objs} arch/x86-64/loader.o
-	$(LD) $(LDFLAGS) -T arch/x86-64/linker.ld -o $@ $^
+kernel-$(ARCH).bin: ${objs} arch/$(ARCH)/loader.o
+	$(LD) $(LDFLAGS) -T arch/$(ARCH)/linker.ld -o $@ $^

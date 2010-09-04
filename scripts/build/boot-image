@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -f boot-disk.img
+make
+grub-mkrescue --output=boot-disk.img kernel-*.bin

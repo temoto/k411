@@ -1,8 +1,8 @@
-# k411 x86-64 loader
+# k411 i386 (including amd64) loader
 # loader.s takes over over control from the Multiboot
 # bootloader, and jumps into the kernel proper.
 
-.global loader                 # making entry point visible to linker
+.global loader  # making entry point visible to linker
 
 # setting up the Multiboot header - see GRUB docs for details
 .set ALIGN,    1<<0             # align loaded modules on page boundaries
@@ -22,12 +22,13 @@
 
 loader:
    mov   $(stack + STACKSIZE), %esp # set up the stack
-   push  %rax                       # Multiboot magic number
-   push  %rbx                       # Multiboot data structure
+   push  %eax                       # Multiboot magic number
+   push  %ebx                       # Multiboot data structure
 
    call  kmain            # call kernel proper
 
    cli
 hang:
-   hlt                    # halt machine should kernel return
+   nop
+   #hlt # halt machine should kernel return
    jmp   hang
