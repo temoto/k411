@@ -4,9 +4,17 @@
 # General
 # ^^^^^^^
 
-CFLAGS := $(CFLAGS) -g -std=c99 -Wall -Wextra -Werror \
+DEBUG   := 1
+CFLAGS  := $(CFLAGS) -std=c99 -Wall -Wextra -Werror \
 	-nostdlib -nostartfiles -nodefaultlibs
-ASFLAGS := $(ASFLAGS) -g --warn
+ASFLAGS := $(ASFLAGS) --warn
+
+ifeq ("$(DEBUG)", "1")
+  CFLAGS  += -g
+  ASFLAGS += -g
+endif
+
+
 # Architecture
 # ^^^^^^^^^^^^
 
