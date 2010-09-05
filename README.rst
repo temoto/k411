@@ -12,7 +12,7 @@ because k411 currently has no 64bit support.
 
 * git clone git://github.com/temoto/k411.git
 * cd k411
-* scripts/build/native-i386
+* make
 * qemu -kernel kernel-i386.bin
 
 Should see "Hello world!" at first line.

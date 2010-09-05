@@ -1,3 +1,0 @@
-#!/bin/sh
-
-make TARGET=i386 clean kernel-x86-32.bin
