@@ -14,6 +14,8 @@ ifeq ("$(DEBUG)", "1")
   ASFLAGS += -g
 endif
 
+MAKEFLAGS := --no-print-directory
+
 
 # Architecture
 # ^^^^^^^^^^^^
@@ -31,22 +33,22 @@ else
   $(error Unsupported ARCH: $(ARCH))
 endif
 
+export CC AS LD CFLAGS ASFLAGS LDFLAGS ARCH DEBUG
 
-objs    := main.o
 
+# Targets
+# ^^^^^^^
 
-.PHONY: clean test
+.PHONY: all clean default test
 
 default: clean all
 
-all: kernel-$(ARCH).bin
+all:
+	@$(MAKE) -C kernel ../kernel-$(ARCH).bin
 
 clean:
-	@rm -f kernel-*.bin arch/*/loader.o ${objs}
+	@$(MAKE) -C kernel $@
 
 test:
-	@echo "No tests ATM, sorry."
+	@echo "No tests yet, sorry."
 	@exit 1
-
-kernel-$(ARCH).bin: ${objs} arch/$(ARCH)/loader.o
-	$(LD) $(LDFLAGS) -T arch/$(ARCH)/linker.ld -o $@ $^

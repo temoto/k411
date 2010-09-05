@@ -1,4 +1,4 @@
-// k411 main.c
+// k411 kernel/main.c
 
 
 void kprintln(const char *s) {
