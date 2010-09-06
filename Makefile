@@ -10,7 +10,7 @@ CFLAGS  := $(CFLAGS) -std=c99 -Wall -Wextra -Werror \
 ASFLAGS := $(ASFLAGS) --warn
 
 ifeq ("$(DEBUG)", "1")
-  CFLAGS  += -g
+  CFLAGS  += -g -DDEBUG
   ASFLAGS += -g
 endif
 
