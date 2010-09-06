@@ -3,7 +3,36 @@
 arch_dir := arch/$(ARCH)
 kernel_bin := ../kernel-$(ARCH).bin
 
-objs := main.o $(arch_dir)/loader.o
+objs := \
+	$(arch_dir)/boot/loader.o \
+	$(arch_dir)/driver/keyboard.o \
+	$(arch_dir)/driver/timer.o \
+	$(arch_dir)/driver/vga.o \
+	$(arch_dir)/hal/exceptions.o \
+	$(arch_dir)/hal/gdt.o \
+	$(arch_dir)/hal/hal.o \
+	$(arch_dir)/hal/idt.o \
+	$(arch_dir)/hal/interrupts.o \
+	$(arch_dir)/hal/irqs.o \
+	$(arch_dir)/hal/isrs.o \
+	$(arch_dir)/hal/mm.o \
+	$(arch_dir)/hal/ports.o \
+	$(arch_dir)/hal/scheduler.o \
+	$(arch_dir)/hal/shutdown.o \
+	$(arch_dir)/hal/syscall.o \
+	$(arch_dir)/stackdump.o \
+	api/display.o \
+	colpa/debug.o \
+	colpa/dprint.o \
+	core/print.o \
+	core/scheduler.o \
+	core/shutdown.o \
+	core/stop.o \
+	main.o \
+	panic.o \
+	stdlib/mem.o \
+	stdlib/string.o \
+	tests.o
 
 
 # Targets
@@ -17,4 +46,4 @@ clean:
 	@rm -f ${objs} $(kernel_bin)
 
 $(kernel_bin): ${objs}
-	$(LD) $(LDFLAGS) -T $(arch_dir)/linker.ld -o $@ $^
+	$(LD) $(LDFLAGS) -T $(arch_dir)/boot/linker.ld -o $@ $^

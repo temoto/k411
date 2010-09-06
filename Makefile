@@ -5,16 +5,21 @@
 # ^^^^^^^
 
 DEBUG   := 1
+
+CC := gcc
+AS := nasm
+LD := ld
+
 CFLAGS  := $(CFLAGS) -std=c99 -Wall -Wextra -Werror \
-	-nostdlib -nostartfiles -nodefaultlibs
-ASFLAGS := $(ASFLAGS) --warn
+	-ffreestanding -nostdlib -nostartfiles -nodefaultlibs \
+	-I$(shell pwd)/include
 
 ifeq ("$(DEBUG)", "1")
   CFLAGS  += -g -DDEBUG
   ASFLAGS += -g
 endif
 
-MAKEFLAGS := --no-print-directory
+MAKEFLAGS += --no-print-directory
 
 
 # Architecture
@@ -27,11 +32,16 @@ endif
 
 ifeq ("$(ARCH)", "i386")
   CFLAGS  += -m32
+  ASFLAGS += -f elf32
   LDFLAGS += -melf_i386
-  ASFLAGS += --32
 else
   $(error Unsupported ARCH: $(ARCH))
 endif
+
+version := $(shell git rev-parse --short HEAD)
+
+CFLAGS += -DARCH=$(ARCH) -DARCH_$(ARCH) \
+	-DK411_BUILD_STR="\"$(version) $(ARCH) debug\""
 
 export CC AS LD CFLAGS ASFLAGS LDFLAGS ARCH DEBUG
 

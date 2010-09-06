@@ -1,0 +1,15 @@
+#ifndef STDDEF_H
+// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+#define STDDEF_H
+
+#ifdef __x86_64
+	// 8 bytes for 64bit
+	typedef unsigned long int size_t;
+#else
+	// 4 bytes for 32bit
+	typedef unsigned int size_t;
+#endif
+
+#define NULL ((void*)(0))
+
+#endif /* end of include guard: STDDEF_H */
