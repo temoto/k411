@@ -24,6 +24,17 @@ because k411 currently has no 64bit support.
 Should see some debugging information on blue background.
 
 
+TODO
+====
+
+Priorities given in parens.
+
+* (5) Understand how metodo scheduler works, find a way to spawn process with
+  statically located code.
+* (4) Find a way to load ELF binary from GRUB modules and spawn it as separate process.
+* (1) Write init service. 'Upstart' could be a good design guide.
+
+
 Known bugs
 ==========
 
