@@ -49,11 +49,10 @@ export CC AS LD CFLAGS ASFLAGS LDFLAGS ARCH DEBUG
 # Targets
 # ^^^^^^^
 
-.PHONY: all clean default test
+.PHONY: clean kernel test
 
-default: clean all
-
-all:
+# default target
+kernel:
 	@$(MAKE) -C kernel ../kernel-$(ARCH).bin
 
 clean:
