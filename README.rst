@@ -27,5 +27,5 @@ Should see some debugging information on blue background.
 Known bugs
 ==========
 
-* Kernel panic on qemu -kernel with #GP
+* Kernel panic on `qemu -kernel` with #GP.
 
