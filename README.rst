@@ -18,8 +18,8 @@ because k411 currently has no 64bit support.
 
 * git clone git://github.com/temoto/k411.git
 * cd k411
-* make
-* qemu -kernel kernel-i386.bin
+* ./scripts/build/boot-i386
+* qemu -cdrom boot-i386.iso
 
 Should see some debugging information on blue background.
 

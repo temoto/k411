@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rm -f boot-i386.iso isofs/kernel-*.bin
+make || exit 1
+ln kernel-i386.bin isofs/
+grub-mkrescue --output=boot-i386.iso isofs
