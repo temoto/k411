@@ -2,8 +2,15 @@
 
 : ${CC="i586-elf-gcc"}
 if which "${CC}" > /dev/null ; then : ; else
-    echo "${CC} is not found on your PATH." >&2
-    exit 1
+    echo "${CC} is not found on your PATH." >&2 ; exit 1
+fi
+: ${AS="nasm"}
+if which "${AS}" > /dev/null ; then : ; else
+    echo "${AS} is not found on your PATH." >&2 ; exit 1
+fi
+: ${LD="i586-elf-ld"}
+if which "${LD}" > /dev/null ; then : ; else
+    echo "${LD} is not found on your PATH." >&2 ; exit 1
 fi
 
-make CC="${CC}" AS="${CC}" LD="${CC}"
+make CC="${CC}" AS="${AS}" LD="${LD}" $*
