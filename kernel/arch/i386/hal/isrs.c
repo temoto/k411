@@ -48,6 +48,11 @@ void HalIsrHandler(struct regs *r)
 		KernDebug();
 	} else if(r->int_no < 32){
 		panic((char*)HalExceptions[r->int_no]);
+	} else {
+		char msg[100];
+		memset(msg, 0, 100);
+		snprintf(msg, 100, "Unknown interrupt: %d (%02xh).", r->int_no, r->int_no);
+		panic(msg);
 	}
 }
 
