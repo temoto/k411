@@ -30,6 +30,6 @@ void HalInit(void)
 	//StartInitializer("scheduler", &HalSchedulerEnable);
 
 	printf("Enabling interrupts...");
-	__asm volatile ("sti");
+	HalEnableInterrupts();
 	printf("Done.\n");
 }
