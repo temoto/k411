@@ -3,7 +3,7 @@
 #include <k411/core/scheduler.h>
 
 
-SchedulerProcess **processes;
+SchedulerProcess *processes;
 
 int32_t current_process_id = 0;
 uint8_t scheduler_firstrun = 1;
@@ -12,18 +12,18 @@ int32_t number_of_processes = 0;
 void CoSchedulerHandler(void)
 {
 
-	if (scheduler_firstrun)
-		*processes = kmalloc(sizeof(SchedulerProcess)*1024);
-
 	if (scheduler_firstrun) {
-		processes[0]->used = 1;
-		processes[100]->used = 1;
+		processes = kmalloc(sizeof(SchedulerProcess) * 1024);
+		memset(processes, 0, sizeof(SchedulerProcess) * 1024);
+
+		processes[0].used = 1;
+		processes[100].used = 1;
 		number_of_processes = 101;
 
 		scheduler_firstrun = 0;
 	}
 
-	HalSchedulerRunProcess(processes[current_process_id]);
+	HalSchedulerRunProcess(&(processes[current_process_id]));
 
 	current_process_id = CoSchedulerNextProcess();
 }
@@ -35,7 +35,7 @@ int32_t CoSchedulerCurProcessId(void)
 
 SchedulerProcess *CoSchedulerCurProcess(void)
 {
-	return processes[current_process_id];
+	return &(processes[current_process_id]);
 }
 
 int32_t CoSchedulerNumProcesses(void)
@@ -63,7 +63,7 @@ int32_t CoSchedulerNextProcessLoop(int32_t begin, int32_t end)
 	i = begin;
 
 	// Try processes with ids from begin to end
-	while(!processes[i]->used) {
+	while(!processes[i].used) {
 		if(i > end) // If we are past the last process in the group, return -1
 			return -1;
 		i++;
