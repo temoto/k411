@@ -12,8 +12,9 @@ void HalTimerHandler(UNUSED struct regs *r)
 	ticks++;
 
 	// Scheduler
-	if ( HalIsSchedulerEnabled() )
+	if ( HalIsSchedulerEnabled() ) {
 		CoSchedulerHandler();
+	}
 }
 
 unsigned int HalGetTicks()

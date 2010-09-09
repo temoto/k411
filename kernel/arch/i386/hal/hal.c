@@ -1,7 +1,8 @@
 // Copied from dux/metodo @ http://github.com/RockerMONO/dux
 #include <k411.h>
 #include <k411/core/scheduler.h>
- 
+
+
 void StartInitializer(const char *name, void (*func)())
 {
 	printf("Initializing %s...", name);
