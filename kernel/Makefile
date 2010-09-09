@@ -47,3 +47,9 @@ clean:
 
 $(kernel_bin): ${objs}
 	$(LD) $(LDFLAGS) -T $(arch_dir)/boot/linker.ld -o $@ $^
+
+
+# Dependencies
+# ^^^^^^^^^^^^
+# TODO: find the tool that automates this
+main.o: ../include/k411.h ../include/k411/modules.h ../include/k411/tests.h
