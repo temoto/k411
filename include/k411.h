@@ -18,12 +18,6 @@
 #include <k411/panic.h>
 #include <k411/stop.h>
 
-extern void monitor_clear();
-extern void monitor_switch_pages(unsigned int a, unsigned int b);
-extern unsigned int monitor_get_cursor_x();
-extern unsigned int monitor_get_cursor_y();
-extern void monitor_set_cursor(unsigned int x, unsigned int y);
-
 multiboot_info_t *mbd;
 memory_map_t *mmaps[100];
 
