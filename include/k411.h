@@ -2,6 +2,7 @@
 // Copied from dux/metodo @ http://github.com/RockerMONO/dux/blob/master/include/metodo/metodo.h
 #define K411_H
 
+#include <stdbool.h>
 #include <system.h>
 
 #include <k411/hal/hal.h>
