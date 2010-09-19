@@ -5,13 +5,6 @@
 
 static int scheduler_enabled = 0;
 
-void HalSchedulerRunProcess(SchedulerProcess *proc)
-{
-	// unused argument
-	proc = proc;
-
-	printf("Switch process %i\n", CoSchedulerCurProcessId());
-}
 
 void HalSchedulerEnable()
 {
@@ -26,4 +19,23 @@ void HalSchedulerDisable()
 int HalIsSchedulerEnabled()
 {
 	return scheduler_enabled;
+}
+
+
+// not from dux/metodo. Copied from http://git.tkgeisel.com/?p=lk.git;a=blob;f=arch/x86/thread.c;h=f2c2f84eda1a118543e734b4892413be0a40a10d;hb=HEAD
+void HalSwitchContext(SchedulerProcess *prev, SchedulerProcess *next)
+{
+	__asm volatile (
+			"pushl $1f          \n\t"
+			"pushf              \n\t"
+			"pusha              \n\t"
+			"movl %%esp,(%%edx) \n\t"
+			"movl %%eax,%%esp   \n\t"
+			"popa               \n\t"
+			"popf               \n\t"
+			"ret                \n\t"
+			"1:                 \n\t"
+			:
+			: "d" (&prev->esp), "a" (next->esp)
+			);
 }

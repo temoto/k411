@@ -12,9 +12,4 @@ int32_t CoSchedulerNextProcessLoop(int32_t begin, int32_t end);
 int32_t CoSchedulerNextProcess(void);
 void CoSchedulerSetNumProcesses(int32_t num);
 
-/* Defined here for simplicitly,
- * however the function is in hal/scheduler.c
- */
-void HalSchedulerRunProcess(SchedulerProcess *proc);
-
 #endif /* end of include guard: CORE_SCHEDULER_H */

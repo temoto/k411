@@ -1,4 +1,5 @@
 // Copied from dux/metodo @ http://github.com/RockerMONO/dux
+#include <colpa/debug.h>
 #include <k411.h>
 #include <k411/core/scheduler.h>
 #include <k411/hal/i386/scheduler.h>
@@ -13,21 +14,28 @@ static uint8_t scheduler_firstrun = 1;
 
 void CoSchedulerHandler(void)
 {
+	unsigned long flags = HalDisableInterrupts();
 
 	if (scheduler_firstrun) {
 		processes = kmalloc(sizeof(SchedulerProcess) * 1024);
 		memset(processes, 0, sizeof(SchedulerProcess) * 1024);
 
-		processes[0].used = 1;
-		processes[100].used = 1;
-		number_of_processes = 101;
-
 		scheduler_firstrun = 0;
 	}
 
-	HalSchedulerRunProcess(&(processes[current_process_id]));
+	SchedulerProcess *old_proc = CoSchedulerCurProcess(),
+	                 *new_proc;
+	int32_t new_proc_id = CoSchedulerNextProcess();
+	printf("|Switch from %i to %i.\n", current_process_id, new_proc_id);
 
-	current_process_id = CoSchedulerNextProcess();
+	if (new_proc_id != current_process_id) {
+		current_process_id = new_proc_id;
+		new_proc = &(processes[new_proc_id]);
+		HalSwitchContext(old_proc, new_proc);
+	}
+
+	// to restore IF flag
+	HalSetCpuFlags(flags);
 }
 
 int32_t CoSchedulerCurProcessId(void)
@@ -38,11 +46,6 @@ int32_t CoSchedulerCurProcessId(void)
 SchedulerProcess *CoSchedulerCurProcess(void)
 {
 	return &(processes[current_process_id]);
-}
-
-int32_t CoSchedulerNumProcesses(void)
-{
-	return number_of_processes;
 }
 
 int32_t CoSchedulerNextProcessLoop(int32_t begin, int32_t end)
@@ -62,16 +65,15 @@ int32_t CoSchedulerNextProcessLoop(int32_t begin, int32_t end)
 		}
 	}
 
-	i = begin;
-
 	// Try processes with ids from begin to end
-	while(!processes[i].used) {
-		if(i > end) // If we are past the last process in the group, return -1
-			return -1;
-		i++;
+	for (i = begin; i < end; i++) {
+		if (processes[i].used) {
+			return i;
+		}
 	}
 
-	return i;
+	// If we are past the last process in the group, return -1
+	return -1;
 }
 
 int32_t CoSchedulerNextProcess(void)
@@ -94,9 +96,4 @@ int32_t CoSchedulerNextProcess(void)
 	}
 
 	return result;
-}
-
-void CoSchedulerSetNumProcesses(int32_t num)
-{
-	number_of_processes = num;
 }
