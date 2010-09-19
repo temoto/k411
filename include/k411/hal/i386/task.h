@@ -10,7 +10,7 @@ struct tss_entry_struct
 	uint32_t prev_tss;     // The previous TSS - if we used hardware task switching this would form a linked list.
 	uint32_t esp0;         // The stack pointer to load when we change to kernel mode.
 	uint32_t ss0;          // The stack segment to load when we change to kernel mode.
-	uint32_t esp1;		 // Unused...
+	uint32_t esp1;         // Unused...
 	uint32_t ss1;
 	uint32_t esp2;
 	uint32_t ss2;
