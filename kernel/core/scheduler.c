@@ -4,10 +4,11 @@
 
 
 SchedulerProcess *processes;
-
-int32_t current_process_id = 0;
-uint8_t scheduler_firstrun = 1;
 int32_t number_of_processes = 0;
+
+static int32_t current_process_id = 0;
+static uint8_t scheduler_firstrun = 1;
+
 
 void CoSchedulerHandler(void)
 {
