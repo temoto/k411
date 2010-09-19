@@ -1,6 +1,6 @@
 // Copied from dux/metodo @ http://github.com/RockerMONO/dux
 #include <k411.h>
-#include <k411/core/scheduler.h>
+#include <k411/core/task.h>
 
 
 static int scheduler_enabled = 0;

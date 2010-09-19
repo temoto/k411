@@ -11,6 +11,7 @@
 
 #include <k411/init.h>
 #include <k411/core/core.h>
+#include <k411/core/task.h>
 
 #include <multiboot.h>
 

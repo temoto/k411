@@ -2,6 +2,7 @@
 #include <k411/driver/driver.h>
 #include <k411/driver/i386/timer.h>
 #include <k411/core/scheduler.h>
+#include <k411/hal/i386/scheduler.h>
 
 
 unsigned int ticks = 0;
