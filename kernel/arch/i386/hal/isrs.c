@@ -1,4 +1,4 @@
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411.h>
 #include <colpa/debug.h>
 #include <config.h>

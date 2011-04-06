@@ -1,5 +1,5 @@
 #ifndef K411_CORE_MEMORY_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define K411_CORE_MEMORY_H
 
 void *memcpy(void *dest, void *src, unsigned int count);

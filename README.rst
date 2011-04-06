@@ -5,7 +5,7 @@ A toy project at bootstrapping OS kernel.
 
 Most of the lowest level code (which is almost everything now) is copied
 from Dux/metodo ( http://duckinator.net/dux/metodo ). Their code is
-at http://github.com/RockerMONO/dux .
+at http://github.com/duckinator/dux .
 
 Dux/metodo code should serve as a basement for future development.
 

@@ -1,5 +1,5 @@
 #ifndef HAL_MM_MEMORY_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define HAL_MM_MEMORY_H
 
 typedef struct {

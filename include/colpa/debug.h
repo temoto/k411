@@ -1,5 +1,5 @@
 #ifndef COLPA_DEBUG_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define COLPA_DEBUG_H
 
 #include <system.h>

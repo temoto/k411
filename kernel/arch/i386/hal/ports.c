@@ -1,4 +1,4 @@
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411.h>
 
 void HalOutPort(uint16_t port, uint8_t val)

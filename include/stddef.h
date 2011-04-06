@@ -1,5 +1,5 @@
 #ifndef STDDEF_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define STDDEF_H
 
 #ifdef __x86_64

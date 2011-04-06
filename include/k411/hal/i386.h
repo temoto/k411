@@ -1,5 +1,5 @@
 #ifndef HAL_I386_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define HAL_I386_H
 
 #include <k411/hal/i386/idt.h>

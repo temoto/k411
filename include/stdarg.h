@@ -1,5 +1,5 @@
 #ifndef STDARG_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define STDARG_H
 
 #define va_start(v,l) __builtin_va_start(v,l)

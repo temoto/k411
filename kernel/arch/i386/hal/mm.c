@@ -1,5 +1,5 @@
 // k411 kernel/hal/mm.c
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux/blob/master/src/metodo/hal/i386/mm/memory.c
+// Copied from dux/metodo @ http://github.com/duckinator/dux/blob/master/src/metodo/hal/i386/mm/memory.c
 #include <k411.h>
 
 extern unsigned int end;

@@ -1,5 +1,5 @@
 // k411 kernel/main.c
-// Most code copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Most code copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411.h>
 #include <k411/modules.h>
 #include <k411/tests.h>

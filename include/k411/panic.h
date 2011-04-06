@@ -1,5 +1,5 @@
 #ifndef PANIC_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define PANIC_H
 
 #define STOP_MSG "A problem has been detected and K411 has been shut down to prevent damage\nto your computer.\n\n"

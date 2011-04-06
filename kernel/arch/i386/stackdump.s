@@ -1,4 +1,4 @@
-; Copied from dux/metodo @ http://github.com/RockerMONO/dux
+; Copied from dux/metodo @ http://github.com/duckinator/dux
 BITS 32
 extern panic_dump_hex
 global stack_dump

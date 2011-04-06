@@ -2,7 +2,7 @@
 ; loader.s takes over over control from the Multiboot
 ; bootloader, and jumps into the kernel proper.
 
-; Something from dux/metodo @ http://github.com/RockerMONO/dux
+; Something from dux/metodo @ http://github.com/duckinator/dux
 ; In particular: _stacktop, extern stop (what is that?).
 
 BITS 32

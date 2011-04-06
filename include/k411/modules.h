@@ -1,5 +1,5 @@
 #ifndef MISC_MODULES_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define MISC_MODULES_H
 
 #include <k411.h>

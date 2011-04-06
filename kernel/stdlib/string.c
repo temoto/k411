@@ -1,4 +1,4 @@
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #include <system.h>
 #include <string.h>
 

@@ -1,5 +1,5 @@
 #ifndef CONFIG_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define CONFIG_H
 
 /* The following line, if defined, has printf() and friends use memory management.

@@ -1,5 +1,5 @@
 #ifndef STDINT_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define STDINT_H
 
 typedef unsigned long long uint64_t;

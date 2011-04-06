@@ -1,5 +1,5 @@
 #ifndef HAL_KEYBOARD_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define HAL_KEYBOARD_H
 
 #define SCROLL_LED 1

@@ -1,4 +1,4 @@
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411/api/api.h>
 #include <k411/api/display.h>
 

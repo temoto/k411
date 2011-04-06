@@ -1,5 +1,5 @@
 #ifndef INIT_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define INIT_H
 
 #include <multiboot.h>

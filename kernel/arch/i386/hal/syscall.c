@@ -1,4 +1,4 @@
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 //
 // syscall.c -- Defines the implementation of a system call system.
 // Based on code from JamesM's kernel development tutorials.

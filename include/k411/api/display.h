@@ -1,5 +1,5 @@
 #ifndef API_DISPLAY_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define API_DISPLAY_H
 
 struct DisplayDevice {

@@ -1,5 +1,5 @@
 #ifndef STOP_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define STOP_H
 
 #include <stdint.h>

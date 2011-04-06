@@ -1,5 +1,5 @@
 #ifndef SYSTEM_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #define SYSTEM_H
 
 #include <stdarg.h>

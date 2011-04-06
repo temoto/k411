@@ -1,4 +1,4 @@
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411/core/memory.h>
 
 void *memcpy(void *dest, void *src, unsigned int count)

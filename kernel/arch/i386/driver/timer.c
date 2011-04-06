@@ -1,4 +1,4 @@
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux
+// Copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411/driver/driver.h>
 #include <k411/driver/i386/timer.h>
 #include <k411/core/scheduler.h>

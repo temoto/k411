@@ -1,5 +1,5 @@
 #ifndef K411_H
-// Copied from dux/metodo @ http://github.com/RockerMONO/dux/blob/master/include/metodo/metodo.h
+// Copied from dux/metodo @ http://github.com/duckinator/dux/blob/master/include/metodo/metodo.h
 #define K411_H
 
 #include <stdbool.h>
