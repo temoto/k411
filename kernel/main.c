@@ -71,25 +71,10 @@ noreturn kmain(void *arg, unsigned int magic) {
 		mmap->length_low, mmap->length_high, mmap->type);
 	}
 
-//    userland = GetModule("/System/userland.exe");
-
-	/* Initialize pseudo-user mode */
-/*
-	if (userland != NULL) {
-		printf("Loading userland...\n");
-		//HalSwitchToUserMode();
-		LoadUserland(userland);
-		printf("\nWhy yes, that is a black hole that flew out of userland...\n(Userland exited unexpectedly)\n");
-	} else {
-*/
-		//panic("No userland");
-		printf("No userland\n");
-		HalBreak();
-		//KernDebug();
-		//KrnlEasyStop(STOP_NO_USERLAND);
-//    }
-
-	while (1) {
-		__asm ("nop");
+	// Make current process the Idle process.
+	//CoSchedulerCurProcess()->priority = IDLE_PRIORITY;
+	while (true) {
+		HalHalt();
+		HalPause();
 	}
 }
