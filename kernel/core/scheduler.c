@@ -92,7 +92,6 @@ int32_t CoSchedulerNextProcess(void)
 	// If result is still -1, either something exploded or there's no processes
 	if(result == -1) {
 		printf("\n\nNo processes");
-		while(1);
 	}
 
 	return result;
