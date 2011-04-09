@@ -6,6 +6,10 @@
 #include <string.h>
 
 
+void process_1();
+void process_2();
+
+
 noreturn kmain(void *arg, unsigned int magic) {
 	if ( magic != 0x2BADB002 ) {
 		/* Something went not according to specs. Print an error */
@@ -71,10 +75,27 @@ noreturn kmain(void *arg, unsigned int magic) {
 		mmap->length_low, mmap->length_high, mmap->type);
 	}
 
+	kspawn_fun(process_1);
+	kspawn_fun(process_2);
+
 	// Make current process the Idle process.
 	//CoSchedulerCurProcess()->priority = IDLE_PRIORITY;
 	while (true) {
 		HalHalt();
 		HalPause();
+	}
+}
+
+void process_1() {
+	while (true) {
+		printf("A");
+		HalHalt();
+	}
+}
+
+void process_2() {
+	while (true) {
+		printf("B");
+		HalHalt();
 	}
 }

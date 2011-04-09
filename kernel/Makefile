@@ -28,6 +28,7 @@ objs := \
 	core/scheduler.o \
 	core/shutdown.o \
 	core/stop.o \
+	core/task.o \
 	main.o \
 	panic.o \
 	stdlib/mem.o \
