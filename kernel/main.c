@@ -6,6 +6,11 @@
 #include <string.h>
 
 
+extern SchedulerProcess *processes;
+extern int32_t number_of_processes;
+SchedulerProcess bootstrap_process;
+
+
 void process_1();
 void process_2();
 
@@ -25,6 +30,11 @@ noreturn kmain(void *arg, unsigned int magic) {
 	DisplayInit();
 	printf("K411 " K411_BUILD_STR " build.\nCompiled at " __TIME__ " " __DATE__ "\n\n");
 	HalInit(); // Rest of HAL
+
+	memset(&bootstrap_process, 0, sizeof(SchedulerProcess));
+	assert(0 == number_of_processes);
+	processes[number_of_processes] = bootstrap_process;
+	number_of_processes += 1;
 
 	/* mbd->flags */
 	unsigned int i, len;
