@@ -24,5 +24,7 @@ void HalSetCpuFlags(unsigned long);
 #include <k411/driver/i386/keyboard.h>
 
 #define HalHalt() __asm __volatile__ ("hlt")
+// TODO: Check if PAUSE is available, use NOP if not.
+#define HalPause() __asm __volatile__ ("pause")
 
 #endif /* end of include guard: HAL_I386_H */
