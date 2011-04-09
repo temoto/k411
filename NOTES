@@ -1,0 +1,5 @@
+Scheduling
+==========
+
+http://newos.org/txt/context_switch.txt
+http://git.tkgeisel.com/?p=lk.git;a=blob;f=arch/x86/thread.c;h=f2c2f84eda1a118543e734b4892413be0a40a10d;hb=HEAD
