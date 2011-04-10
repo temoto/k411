@@ -3,6 +3,8 @@
 #define K411_H
 
 #include <stdbool.h>
+#include <stdint.h>
+#include <stdlib.h>
 #include <system.h>
 
 #include <k411/hal/hal.h>
