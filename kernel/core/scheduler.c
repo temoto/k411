@@ -64,7 +64,7 @@ int32_t SchedulerNextProcessLoop(int32_t begin, int32_t end)
 
 	// Try processes with ids from begin to end
 	for (int32_t i = begin; i < end; i++) {
-		if (processes[i].used) {
+		if (processes[i].state == PROCESS_RUNNING) {
 			return i;
 		}
 	}

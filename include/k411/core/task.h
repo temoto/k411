@@ -20,7 +20,6 @@ enum ProcessState {
 typedef struct SchedulerProcess_s {
 	enum ProcessState state;
 
-	int used;
 	struct proc_regs registers;
 
 	void *stack; // base of stack
