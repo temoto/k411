@@ -14,12 +14,12 @@ void SchedulerEnable();
 void SchedulerDisable();
 int IsSchedulerEnabled();
 
-void CoSchedulerHandler(void);
-SchedulerProcess *CoSchedulerCurProcess(void);
-int32_t CoSchedulerCurProcessId(void);
-int32_t CoSchedulerNumProcesses(void);
-int32_t CoSchedulerNextProcessLoop(int32_t begin, int32_t end);
-int32_t CoSchedulerNextProcess(void);
-void CoSchedulerSetNumProcesses(int32_t num);
+void SchedulerHandler(void);
+SchedulerProcess *SchedulerCurProcess(void);
+int32_t SchedulerCurProcessId(void);
+int32_t SchedulerNumProcesses(void);
+int32_t SchedulerNextProcessLoop(int32_t begin, int32_t end);
+int32_t SchedulerNextProcess(void);
+void SchedulerSetNumProcesses(int32_t num);
 
 #endif /* end of include guard: CORE_SCHEDULER_H */

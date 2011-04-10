@@ -18,7 +18,7 @@ void SchedulerDisable() { scheduler_enabled = 0; }
 int IsSchedulerEnabled() { return scheduler_enabled; }
 
 
-void CoSchedulerHandler(void)
+void SchedulerHandler(void)
 {
 	unsigned long flags = HalDisableInterrupts();
 
@@ -29,9 +29,9 @@ void CoSchedulerHandler(void)
 		scheduler_firstrun = 0;
 	}
 
-	SchedulerProcess *old_proc = CoSchedulerCurProcess(),
+	SchedulerProcess *old_proc = SchedulerCurProcess(),
 	                 *new_proc;
-	int32_t new_proc_id = CoSchedulerNextProcess();
+	int32_t new_proc_id = SchedulerNextProcess();
 	printf("|Switch from %i to %i.\n", current_process_id, new_proc_id);
 
 	if (new_proc_id != current_process_id) {
@@ -44,17 +44,17 @@ void CoSchedulerHandler(void)
 	HalSetCpuFlags(flags);
 }
 
-int32_t CoSchedulerCurProcessId(void)
+int32_t SchedulerCurProcessId(void)
 {
 	return current_process_id;
 }
 
-SchedulerProcess *CoSchedulerCurProcess(void)
+SchedulerProcess *SchedulerCurProcess(void)
 {
 	return &(processes[current_process_id]);
 }
 
-int32_t CoSchedulerNextProcessLoop(int32_t begin, int32_t end)
+int32_t SchedulerNextProcessLoop(int32_t begin, int32_t end)
 {
 	int32_t i;
 
@@ -82,17 +82,17 @@ int32_t CoSchedulerNextProcessLoop(int32_t begin, int32_t end)
 	return -1;
 }
 
-int32_t CoSchedulerNextProcess(void)
+int32_t SchedulerNextProcess(void)
 {
 	int32_t result;
 	int32_t last_process = current_process_id;
 
 	// Try processes current_process_id -> (number_of_processes-1)
-	result = CoSchedulerNextProcessLoop(last_process+1, -1);
+	result = SchedulerNextProcessLoop(last_process+1, -1);
 
 	// If result == -1, try again from 0 -> last_process
 	if(result == -1) {
-		result = CoSchedulerNextProcessLoop(0, last_process);
+		result = SchedulerNextProcessLoop(0, last_process);
 	}
 
 	// If result is still -1, either something exploded or there's no processes

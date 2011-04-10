@@ -13,7 +13,7 @@ void HalTimerHandler(UNUSED struct regs *r)
 
 	// Scheduler
 	if ( IsSchedulerEnabled() ) {
-		CoSchedulerHandler();
+		SchedulerHandler();
 	}
 }
 

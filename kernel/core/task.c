@@ -39,19 +39,19 @@ int ProcessInit(SchedulerProcess *proc, const char *name, KThreadFun entry_point
 
 void ProcessResume(SchedulerProcess *proc) {
 	proc->state = PROCESS_RUNNING;
-	CoSchedulerHandler();
+	SchedulerHandler();
 }
 
 
 void ProcessSuspend(SchedulerProcess *proc) {
 	proc->state = PROCESS_SUSPENDED;
-	CoSchedulerHandler();
+	SchedulerHandler();
 }
 
 
 void ProcessExit(SchedulerProcess *proc) {
 	proc->state = PROCESS_FINISHED;
-	CoSchedulerHandler();
+	SchedulerHandler();
 }
 
 

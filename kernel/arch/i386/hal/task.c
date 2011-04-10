@@ -32,7 +32,7 @@ void HalSwitchContext(SchedulerProcess *prev, SchedulerProcess *next)
 static noreturn initial_process_fun(void);
 static noreturn initial_process_fun(void)
 {
-	SchedulerProcess *current_process = CoSchedulerCurProcess();
+	SchedulerProcess *current_process = SchedulerCurProcess();
 
 //	dprintf("initial_thread_func: thread %p calling %p with arg %p\n", current_thread, current_thread->entry, current_thread->arg);
 //	dump_thread(current_thread);

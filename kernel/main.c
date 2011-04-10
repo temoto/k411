@@ -75,7 +75,7 @@ noreturn kmain(void *arg, unsigned int magic) {
 	kspawn_fun(process_2);
 
 	// Make current process the Idle process.
-	idle_process = CoSchedulerCurProcess();
+	idle_process = &bootstrap_process;
 	ProcessSetName(idle_process, "Idle");
 	//idle_process->priority = IDLE_PRIORITY;
 	while (true) {
