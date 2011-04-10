@@ -4,7 +4,8 @@
 #include <k411/core/scheduler.h>
 
 
-unsigned int ticks = 0;
+static unsigned int ticks = 0;
+
 
 void HalTimerHandler(UNUSED struct regs *r)
 {
