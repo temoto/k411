@@ -17,7 +17,7 @@ struct stack_frame {
 
 void panic_dump_hex(unsigned int *stack);
 char *stop_getmsg(int error);
-void stop(int error, int argc, ...);
+noreturn stop(int error, int argc, ...);
 void stop_dump_stack(void);
 void stack_dump(void);
 void register_dump(void);
@@ -29,7 +29,7 @@ void assert_dowork(const char *function, const char *file, int line, const char 
 #define assert(a) if (!(a)) assert_dowork(__FUNCTION__, __FILE__, __LINE__, #a)
 
 /* Panic */
-void _panic(char *text, const char *function, const char *filename, int line);
+noreturn _panic(char *text, const char *function, const char *filename, int line);
 #define panic(message) _panic(message, __FUNCTION__, __FILE__, __LINE__)
 
 #endif /* end of include guard: PANIC_H */

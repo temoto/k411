@@ -12,13 +12,12 @@ char *stop_table[7] = {
 	(char*)0x0
 };
 
-void _panic(char *text, const char *function, const char *filename, int line)
+noreturn _panic(char *text, const char *function, const char *filename, int line)
 {
 	if (in_panic) {
 		/* Something is causing a recursive panic, so
 		 * just kill the machine. */
-		__asm volatile("cli");
-		__asm volatile("hlt");
+		HalShutdown();
 	}
 	in_panic = 1;
  
@@ -28,8 +27,8 @@ void _panic(char *text, const char *function, const char *filename, int line)
 	printf("\n**** UDUDD ***\n\n%s\n\n", text);
 	printf("Function: %s\nFile: %s\nLine: %d\n", function, filename, line);
 	stack_dump();
-	__asm("cli");
-	__asm("hlt");
+
+	HalShutdown();
 }
  
 void panic_dump_hex(unsigned int *stack)
@@ -61,7 +60,7 @@ char *stop_getmsg(int error)
 	return (char*)stop_table[index+1];
 }
 
-void stop(int error, int argc, ...)
+noreturn stop(int error, int argc, ...)
 {
 	va_list ap;
 	int i;
@@ -72,8 +71,7 @@ void stop(int error, int argc, ...)
 	if (in_panic) {
 		/* Something is causing a recursive stop, so
 		 * just kill the machine. */
-		__asm volatile("cli");
-		__asm volatile("hlt");
+		HalShutdown();
 	}
 	in_panic = 1;
 
@@ -116,8 +114,7 @@ void stop(int error, int argc, ...)
 
 	stop_dump_stack();
 
-	__asm volatile("cli");
-	__asm volatile("hlt");
+	HalShutdown();
 }
 
 void assert_dowork(const char *function, const char *file, int line, const char *code)
