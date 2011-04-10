@@ -88,13 +88,13 @@ noreturn kmain(void *arg, unsigned int magic) {
 void process_1() {
 	while (true) {
 		printf("A");
-		HalHalt();
+		HalPause();
 	}
 }
 
 void process_2() {
 	while (true) {
 		printf("B");
-		HalHalt();
+		HalPause();
 	}
 }
