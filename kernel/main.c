@@ -30,7 +30,8 @@ noreturn kmain(void *arg, unsigned int magic) {
 	printf("K411 " K411_BUILD_STR " build.\nCompiled at " __TIME__ " " __DATE__ "\n\n");
 	HalInit(); // Rest of HAL
 
-	memset(&bootstrap_process, 0, sizeof(SchedulerProcess));
+	ProcessInit(&bootstrap_process, "Bootstrap", kmain, 8 * 1024);
+	bootstrap_process.state = PROCESS_RUNNING;
 	assert(0 == number_of_processes);
 	processes[number_of_processes] = bootstrap_process;
 	number_of_processes += 1;

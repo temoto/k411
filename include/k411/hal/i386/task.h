@@ -2,6 +2,8 @@
 // Copied from dux/metodo @ http://github.com/duckinator/dux
 #define HAL_TASK_H
 
+#include <k411/core/task.h>
+
 // tss_entry_struct and tss_entry_t snagged from http://www.jamesmolloy.co.uk/tutorial_html/10.-User%20Mode.html :P
 
 // A struct describing a Task State Segment.

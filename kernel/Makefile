@@ -17,9 +17,9 @@ objs := \
 	$(arch_dir)/hal/isrs.o \
 	$(arch_dir)/hal/mm.o \
 	$(arch_dir)/hal/ports.o \
-	$(arch_dir)/hal/scheduler.o \
 	$(arch_dir)/hal/shutdown.o \
 	$(arch_dir)/hal/syscall.o \
+	$(arch_dir)/hal/task.o \
 	$(arch_dir)/stackdump.o \
 	api/display.o \
 	colpa/debug.o \
