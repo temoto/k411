@@ -12,4 +12,13 @@ typedef signed int          int32_t;
 typedef signed short        int16_t;
 typedef signed char         int8_t;
 
+
+#if __WORDSIZE == 64
+typedef long int            intptr_t;
+typedef unsigned long int   uintptr_t;
+#else
+typedef int                 intptr_t;
+typedef unsigned int        uintptr_t;
+#endif
+
 #endif /* end of include guard: STDINT_H */
