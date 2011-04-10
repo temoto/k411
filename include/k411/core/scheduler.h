@@ -7,6 +7,9 @@
 
 extern SchedulerProcess *processes;
 extern int32_t number_of_processes;
+extern SchedulerProcess *idle_process;
+
+
 void SchedulerEnable();
 void SchedulerDisable();
 int IsSchedulerEnabled();
