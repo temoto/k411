@@ -4,12 +4,12 @@
 #include <k411/hal/i386/scheduler.h>
 
 
-SchedulerProcess *processes;
+static SchedulerProcess __processes[1024];
+SchedulerProcess *processes = __processes;
 uint32_t number_of_processes = 0;
 SchedulerProcess *idle_process;
 
 static int32_t current_process_id = 0;
-static uint8_t scheduler_firstrun = 1;
 static int scheduler_enabled = 0;
 
 
@@ -21,13 +21,6 @@ int IsSchedulerEnabled() { return scheduler_enabled; }
 void SchedulerHandler(void)
 {
 	unsigned long flags = HalDisableInterrupts();
-
-	if (scheduler_firstrun) {
-		processes = kmalloc(sizeof(SchedulerProcess) * 1024);
-		memset(processes, 0, sizeof(SchedulerProcess) * 1024);
-
-		scheduler_firstrun = 0;
-	}
 
 	SchedulerProcess *old_proc = SchedulerCurProcess(),
 	                 *new_proc;
