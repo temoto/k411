@@ -1,9 +1,6 @@
 #include <k411.h>
 #include <k411/core/scheduler.h>
-
-
-extern SchedulerProcess *processes;
-extern int32_t number_of_processes;
+#include <k411/core/task.h>
 
 
 bool kspawn_fun(KThreadFun func) {

@@ -1,13 +1,12 @@
 // k411 kernel/main.c
 // Most code copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411.h>
+#include <k411/core/scheduler.h>
 #include <k411/modules.h>
 #include <k411/tests.h>
 #include <string.h>
 
 
-extern SchedulerProcess *processes;
-extern int32_t number_of_processes;
 SchedulerProcess bootstrap_process;
 
 

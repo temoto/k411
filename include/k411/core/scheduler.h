@@ -4,6 +4,9 @@
 
 #include <stdint.h>
 
+
+extern SchedulerProcess *processes;
+extern int32_t number_of_processes;
 void SchedulerEnable();
 void SchedulerDisable();
 int IsSchedulerEnabled();
