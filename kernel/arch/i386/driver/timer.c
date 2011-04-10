@@ -2,7 +2,6 @@
 #include <k411/driver/driver.h>
 #include <k411/driver/i386/timer.h>
 #include <k411/core/scheduler.h>
-#include <k411/hal/i386/scheduler.h>
 
 
 unsigned int ticks = 0;
@@ -13,7 +12,7 @@ void HalTimerHandler(UNUSED struct regs *r)
 	ticks++;
 
 	// Scheduler
-	if ( HalIsSchedulerEnabled() ) {
+	if ( IsSchedulerEnabled() ) {
 		CoSchedulerHandler();
 	}
 }

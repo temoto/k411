@@ -1,7 +1,6 @@
 // Copied from dux/metodo @ http://github.com/duckinator/dux
 #include <k411.h>
 #include <k411/core/scheduler.h>
-#include <k411/hal/i386/scheduler.h>
 
 
 void StartInitializer(const char *name, void (*func)())
@@ -28,7 +27,7 @@ void HalInit(void)
 	StartInitializer("syscalls", &HalInitializeSyscalls);
 	StartInitializer("memory management", &init_mm);
 	StartInitializer("keyboard", &HalKeyboardInit);
-	StartInitializer("scheduler", &HalSchedulerEnable);
+	StartInitializer("scheduler", &SchedulerEnable);
 
 	printf("Enabling interrupts...");
 	HalEnableInterrupts();

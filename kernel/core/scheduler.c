@@ -9,6 +9,12 @@ int32_t number_of_processes = 0;
 
 static int32_t current_process_id = 0;
 static uint8_t scheduler_firstrun = 1;
+static int scheduler_enabled = 0;
+
+
+void SchedulerEnable() { scheduler_enabled = 1; }
+void SchedulerDisable() { scheduler_enabled = 0; }
+int IsSchedulerEnabled() { return scheduler_enabled; }
 
 
 void CoSchedulerHandler(void)

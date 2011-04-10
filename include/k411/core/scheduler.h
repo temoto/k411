@@ -4,6 +4,10 @@
 
 #include <stdint.h>
 
+void SchedulerEnable();
+void SchedulerDisable();
+int IsSchedulerEnabled();
+
 void CoSchedulerHandler(void);
 SchedulerProcess *CoSchedulerCurProcess(void);
 int32_t CoSchedulerCurProcessId(void);
