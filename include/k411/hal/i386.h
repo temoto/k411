@@ -23,8 +23,8 @@ void HalSetCpuFlags(unsigned long);
 #include <k411/driver/i386/timer.h>
 #include <k411/driver/i386/keyboard.h>
 
-#define HalHalt() __asm __volatile__ ("hlt")
+#define HalHalt() __asm volatile ("hlt")
 // TODO: Check if PAUSE is available, use NOP if not.
-#define HalPause() __asm __volatile__ ("pause")
+#define HalPause() __asm volatile ("pause")
 
 #endif /* end of include guard: HAL_I386_H */

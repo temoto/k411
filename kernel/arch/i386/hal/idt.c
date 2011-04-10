@@ -19,7 +19,7 @@ void HalInitIDT(void)
 
 static void HalLoadIDT(void)
 {
-	__asm__ __volatile__ ("lidt %0" : : "m" (idtd));
+	__asm volatile ("lidt %0" : : "m" (idtd));
 }
 
 void HalSetIDTGate(IN size_t n, IN uint32_t offset, IN uint16_t selector, IN uint8_t priv, IN uint8_t sys, IN uint8_t gatetype)

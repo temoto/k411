@@ -4,7 +4,7 @@
 
 inline void HalDisableInterrupts_(void)
 {
-	__asm __volatile__ ("cli");
+	__asm volatile ("cli");
 }
 
 inline unsigned long HalDisableInterrupts(void)
@@ -16,7 +16,7 @@ inline unsigned long HalDisableInterrupts(void)
 
 inline void HalEnableInterrupts(void)
 {
-	__asm __volatile__ ("sti");
+	__asm volatile ("sti");
 }
 
 inline void HalDisableNMI(void)
@@ -40,7 +40,7 @@ inline unsigned long HalGetCpuFlags(void)
 	 * it evaluates its effective address -- this is part of the
 	 * documented behavior of the "pop" instruction.
 	 */
-	__asm volatile("pushf ; pop %0"
+	__asm volatile ("pushf ; pop %0"
 	               : "=rm" (flags)
 	               : /* no input */
 	               : "memory");
@@ -50,7 +50,7 @@ inline unsigned long HalGetCpuFlags(void)
 
 inline void HalSetCpuFlags(unsigned long flags)
 {
-	__asm volatile("push %0 ; popf"
+	__asm volatile ("push %0 ; popf"
 	               : /* no output */
 	               : "g" (flags)
 	               : "memory", "cc");
