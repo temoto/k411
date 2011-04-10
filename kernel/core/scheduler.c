@@ -22,15 +22,15 @@ void SchedulerHandler(void)
 {
 	unsigned long flags = HalDisableInterrupts();
 
-	SchedulerProcess *old_proc = SchedulerCurProcess(),
-	                 *new_proc;
 	int32_t new_proc_id = SchedulerNextProcess();
-	printf("|Switch from %i to %i.\n", current_process_id, new_proc_id);
-
-	if (new_proc_id != current_process_id) {
-		current_process_id = new_proc_id;
-		new_proc = &(processes[new_proc_id]);
-		HalSwitchContext(old_proc, new_proc);
+	if (new_proc_id != -1) {
+		if (new_proc_id != current_process_id) {
+			printf("|Switch from %i to %i.\n", current_process_id, new_proc_id);
+			current_process_id = new_proc_id;
+			SchedulerProcess *old_proc = SchedulerCurProcess();
+			SchedulerProcess *new_proc = &(processes[new_proc_id]);
+			HalSwitchContext(old_proc, new_proc);
+		}
 	}
 
 	// to restore IF flag
