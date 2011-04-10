@@ -33,6 +33,8 @@ objs := \
 	panic.o \
 	stdlib/mem.o \
 	stdlib/string.o \
+	stdlib/strlcat.o \
+	stdlib/strlcpy.o \
 	tests.o
 
 
