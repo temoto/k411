@@ -54,12 +54,6 @@ noreturn kmain(void *arg, unsigned int magic) {
 			modules[current_module].exe = (void*) module->mod_start;
 			printf("Found executable %s at 0x%x\n", modules[current_module].name, modules[current_module].exe);
 			current_module++;
-
-			if (strncmp((char*)module->string, (char*)"/Drivers/", 9) == 0) {
-				printf("Loading driver: %s\n", (char*)module->string);
-				//LoadExe((void*)module->mod_start);
-				//while(1){}
-			}
 		}
 	}
 
@@ -72,17 +66,9 @@ noreturn kmain(void *arg, unsigned int magic) {
 	for (i = 0; mmap < (memory_map_t*)(mbd->mmap_addr + mbd->mmap_length); i++,mmap++) {
 		// Store all memory maps in mmaps (see metodo.h)
 		mmaps[i] = mmap;
-		// Print info about current memory map
-/*      printf("mmap:\n\
-		size: %i\n\
-		base_addr_low: 0x%x\n\
-		base_addr_high: 0x%x\n\
-		length_low: %i\n\
-		length_high: %i\n\
-		type: %i\n",*/
 		printf(" %8x | %8x | %8x | %8x | %8x | %8x\n",
-		mmap->size, mmap->base_addr_low, mmap->base_addr_high,
-		mmap->length_low, mmap->length_high, mmap->type);
+		       mmap->size, mmap->base_addr_low, mmap->base_addr_high,
+		       mmap->length_low, mmap->length_high, mmap->type);
 	}
 
 	kspawn_fun(process_1);

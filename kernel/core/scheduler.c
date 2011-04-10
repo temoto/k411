@@ -1,5 +1,4 @@
 // Copied from dux/metodo @ http://github.com/duckinator/dux
-#include <colpa/debug.h>
 #include <k411.h>
 #include <k411/core/scheduler.h>
 #include <k411/hal/i386/scheduler.h>
