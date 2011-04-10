@@ -7,6 +7,7 @@
 bool kspawn_fun(KThreadFun func) {
 	SchedulerProcess proc;
 	ProcessInit(&proc, "kernel task", func, 8 * 1024);
+	proc.state = PROCESS_RUNNING;
 
 	processes[number_of_processes] = proc;
 	number_of_processes += 1;
