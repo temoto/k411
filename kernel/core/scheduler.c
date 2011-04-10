@@ -5,7 +5,7 @@
 
 
 SchedulerProcess *processes;
-int32_t number_of_processes = 0;
+uint32_t number_of_processes = 0;
 SchedulerProcess *idle_process;
 
 static int32_t current_process_id = 0;
@@ -56,14 +56,12 @@ SchedulerProcess *SchedulerCurProcess(void)
 
 int32_t SchedulerNextProcessLoop(int32_t begin, int32_t end)
 {
-	int32_t i;
-
 	if (end == -1) {
 		end = number_of_processes;
 	}
 
 	if (begin == end) {
-		if(end > number_of_processes) {
+		if((uint32_t)end > number_of_processes) {
 			end = number_of_processes;
 		} else {
 			begin = 0;
@@ -72,7 +70,7 @@ int32_t SchedulerNextProcessLoop(int32_t begin, int32_t end)
 	}
 
 	// Try processes with ids from begin to end
-	for (i = begin; i < end; i++) {
+	for (int32_t i = begin; i < end; i++) {
 		if (processes[i].used) {
 			return i;
 		}
@@ -85,7 +83,7 @@ int32_t SchedulerNextProcessLoop(int32_t begin, int32_t end)
 int32_t SchedulerNextProcess(void)
 {
 	int32_t result;
-	int32_t last_process = current_process_id;
+	uint32_t last_process = current_process_id;
 
 	// Try processes current_process_id -> (number_of_processes-1)
 	result = SchedulerNextProcessLoop(last_process+1, -1);
