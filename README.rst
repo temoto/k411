@@ -9,6 +9,9 @@ at http://github.com/duckinator/dux .
 
 Dux/metodo code should serve as a basement for future development.
 
+Task switching code is copied from little kernel ( http://git.tkgeisel.com/?p=lk.git;a=summary )
+by Travis Geiselbrecht.
+
 
 Instructions
 ============
@@ -21,7 +24,8 @@ because k411 currently has no 64bit support.
 * ./scripts/build/boot-i386
 * qemu -cdrom boot-i386.iso
 
-Should see some debugging information on blue background.
+Should see some debugging information and interleaving AAA...BBB... If you don't like that,
+remove two calls 'kspawn_fun' in kernel/main.c.
 
 
 TODO
@@ -29,14 +33,15 @@ TODO
 
 Priorities given in parens.
 
-* (5) Understand how metodo scheduler works, find a way to spawn process with
-  statically located code.
+* (5) Implement process sleep.
 * (4) Find a way to load ELF binary from GRUB modules and spawn it as separate process.
+* (3) Learn to switch to user mode (ring3). Run ELF binary in user mode.
+* (2) Write tests.
 * (1) Write init service. 'Upstart' could be a good design guide.
+* (1) New arch: amd64.
 
 
 Known bugs
 ==========
 
-* Kernel panic on `qemu -kernel` with #GP.
-
+* Fixed. Kernel panic on `qemu -kernel` with #GP.
