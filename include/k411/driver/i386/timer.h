@@ -12,9 +12,9 @@ enum TimerMode {
 };
 
 
-extern void HalTimerHandler(struct regs *r);
-extern unsigned int HalGetTicks();
-extern void HalTimerInit();
+void HalTimerHandler(struct regs *r);
+unsigned int HalGetTicks();
+void HalTimerInit();
 void HalTimerSet(const uint32_t timeout, const enum TimerMode mode);
 
 #endif /* end of include guard: HAL_TIMER_H */
