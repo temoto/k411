@@ -1,4 +1,5 @@
 // Copied from dux/metodo @ http://github.com/duckinator/dux
+#include <config.h>
 #include <k411/driver/i386/vga.h>
 
 #define COLS (80)
@@ -98,7 +99,7 @@ void VgaDisplayInit(void)
 	VideoMemory = (uint16_t*) VIDEO_MEMORY;
 	col = 0;
 	row = 0;
-	attr = 0x1f;
+	attr = CONSOLE_BG_COLOR << 4 | CONSOLE_FG_COLOR; // BG << 4 | FG
 	escape = 0;
 	escape_attr = 0;
 	disp_init = 1;

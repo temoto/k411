@@ -15,4 +15,9 @@
  */
 #define IA32_SYSCALL_INTERRUPT 0xFF
 
+
+// Default console color attributes
+#define CONSOLE_BG_COLOR 0x0
+#define CONSOLE_FG_COLOR 0x7
+
 #endif /* end of include guard: CONFIG_H */
