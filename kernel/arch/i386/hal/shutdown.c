@@ -9,8 +9,8 @@ void HalBreak(void)
 noreturn HalShutdown(void)
 {
 	while (1) {
-		__asm volatile ("cli");
-		__asm volatile ("hlt");
+		HalDisableInterrupts_();
+		HalHalt();
 	}
 }
 
@@ -18,7 +18,7 @@ noreturn HalShutdown(void)
 noreturn HalReboot(void)
 {
 	unsigned char good = 0x02;
-	HalDisableInterrupts();
+	HalDisableInterrupts_();
 	__asm volatile ("int $0x13");
 
 	while ((good & 0x02) != 0) {

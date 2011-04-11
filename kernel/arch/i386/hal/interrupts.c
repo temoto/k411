@@ -10,7 +10,7 @@ inline void HalDisableInterrupts_(void)
 inline unsigned long HalDisableInterrupts(void)
 {
 	unsigned long flags = HalGetCpuFlags();
-	__asm volatile ("cli");
+	HalDisableInterrupts_();
 	return flags;
 }
 
