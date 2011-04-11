@@ -93,6 +93,15 @@ void HalIrqInstall(void)
 *  an EOI, you won't raise any more IRQs */
 void HalIrqHandler(struct regs *r)
 {
+	unsigned long flags = HalDisableInterrupts();
+
+	/* We need to send an EOI to the
+	*  interrupt controllers too */
+	if(r->int_no > 8){ /* Only send EOI to slave controller if it's involved (irqs 9 and up) */
+		HalOutPort(0xA0, 0x20);
+	}
+	HalOutPort(0x20, 0x20);
+
 	/* This is a blank function pointer */
 	void (*handler)(struct regs *r);
 
@@ -104,10 +113,5 @@ void HalIrqHandler(struct regs *r)
 		handler(r);
 	}
 
-	/* We need to send an EOI to the
-	*  interrupt controllers too */
-	if(r->int_no > 8){ /* Only send EOI to slave controller if it's involved (irqs 9 and up) */
-		HalOutPort(0xA0, 0x20);
-	}
-	HalOutPort(0x20, 0x20);
+	HalSetCpuFlags(flags);
 }

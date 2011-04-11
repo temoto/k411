@@ -19,8 +19,6 @@ int IsSchedulerEnabled() { return scheduler_enabled; }
 
 void SchedulerHandler(void)
 {
-	unsigned long flags = HalDisableInterrupts();
-
 	int32_t new_proc_id = SchedulerNextProcess();
 	if (new_proc_id != -1) {
 		if (new_proc_id != current_process_id) {
@@ -31,9 +29,6 @@ void SchedulerHandler(void)
 			HalSwitchContext(old_proc, new_proc);
 		}
 	}
-
-	// to restore IF flag
-	HalSetCpuFlags(flags);
 }
 
 int32_t SchedulerCurProcessId(void)
