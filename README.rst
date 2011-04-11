@@ -36,7 +36,6 @@ Priorities given in parens.
 * (4) Find a way to load ELF binary from GRUB modules and spawn it as separate process.
 * (3) Learn to switch to user mode (ring3). Run ELF binary in user mode.
 * (2) Write tests.
-* (2) Use higher resolution timer.
 * (1) Write init service. 'Upstart' could be a good design guide.
 * (1) New arch: amd64.
 

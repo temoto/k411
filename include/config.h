@@ -20,4 +20,8 @@
 #define CONSOLE_BG_COLOR 0x0
 #define CONSOLE_FG_COLOR 0x7
 
+
+// Initial timer frequency. In microseconds.
+#define DEFAULT_TIMER_INTERVAL 1000
+
 #endif /* end of include guard: CONFIG_H */
