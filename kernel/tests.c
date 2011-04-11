@@ -58,17 +58,17 @@ void MemorySizeTest()
 void MMTest()
 {
 	printf("Beginning memory management test:\n");
-	printf("\tFirst free frame:  %i\n", first_frame());
-	printf("\tAllocating frame at %i\n", first_frame());
-	set_frame(first_frame());
-	printf("\tFirst free frame is now %i\n", first_frame());
+	printf("\tFirst free frame:  %i\n", FirstFrame());
+	printf("\tAllocating frame at %i\n", FirstFrame());
+	SetFrame(FirstFrame());
+	printf("\tFirst free frame is now %i\n", FirstFrame());
 	printf("Finished memory management test\n\n");
 }
 
 void UsedFrameTest()
 {
 	for (unsigned int i = 0; i < end_memory; i += 0x1000) {
-		if (test_frame(i)) {
+		if (TestFrame(i)) {
 			printf("Frame %u (%u-%u) is used.\n", i, i, i+0x0111);
 		}
 	}

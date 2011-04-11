@@ -6,7 +6,7 @@
 #define NUM_LED 2
 #define CAPSLOCK_LED 4
 
-typedef struct hal_key_info {
+typedef struct HalKeyInfo {
 	int ctrl_l, ctrl_r;
 	int alt_l, alt_r;
 	int shift_l, shift_r;

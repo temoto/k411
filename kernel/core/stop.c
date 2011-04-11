@@ -5,8 +5,9 @@
 #include <k411/stop.h>
  
 static int in_stop = 0;
- 
-void kstop(uint32_t error, uint32_t arg1, uint32_t arg2, uint32_t arg3, uint32_t arg4)
+
+
+void KernelStop(uint32_t error, uint32_t arg1, uint32_t arg2, uint32_t arg3, uint32_t arg4)
 {
 	if (in_stop) {
 		/* Its recursive! */

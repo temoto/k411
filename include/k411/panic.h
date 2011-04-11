@@ -15,18 +15,18 @@ struct stack_frame {
 	void *addr; 
 };
 
-void panic_dump_hex(unsigned int *stack);
-char *stop_getmsg(int error);
+void PanicDumpHex(unsigned int *stack);
+char *StopGetMsg(int error);
 noreturn stop(int error, int argc, ...);
-void stop_dump_stack(void);
-void stack_dump(void);
-void register_dump(void);
+void StackDumpStop(void);
+void StackDump(void);
+void DumpRegisters(void);
 
-void panic_setup_stop_table();
+void PanicSetupStopTable();
 
 /* Assert */
-void assert_dowork(const char *function, const char *file, int line, const char *code);
-#define assert(a) if (!(a)) assert_dowork(__FUNCTION__, __FILE__, __LINE__, #a)
+void AssertDoWork(const char *function, const char *file, int line, const char *code);
+#define assert(a) if (!(a)) AssertDoWork(__FUNCTION__, __FILE__, __LINE__, #a)
 
 /* Panic */
 noreturn _panic(char *text, const char *function, const char *filename, int line);

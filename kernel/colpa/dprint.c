@@ -21,12 +21,12 @@ void dprint(debug_type type, char *str, const char *fmt, ...)
 	}
 }
 
-void set_debug_mode(debug_type type)
+void SetDebugMode(debug_type type)
 {
 	DEBUG_MODE = type;
 }
 
-debug_type get_debug_mode(void)
+debug_type GetDebugMode(void)
 {
 	return DEBUG_MODE;
 }

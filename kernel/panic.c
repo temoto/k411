@@ -26,12 +26,12 @@ noreturn _panic(char *text, const char *function, const char *filename, int line
 	DisplayClear();
 	printf("\n**** UDUDD ***\n\n%s\n\n", text);
 	printf("Function: %s\nFile: %s\nLine: %d\n", function, filename, line);
-	stack_dump();
+	StackDump();
 
 	HalShutdown();
 }
  
-void panic_dump_hex(unsigned int *stack)
+void PanicDumpHex(unsigned int *stack)
 {
 	unsigned int orig_stack = (unsigned int) stack;
 	printf("\nBecause I stack-traced it!\n");
@@ -43,7 +43,7 @@ void panic_dump_hex(unsigned int *stack)
 	}
 }
 
-char *stop_getmsg(int error)
+char *StopGetMsg(int error)
 {
 	int i;
 	int index;
@@ -60,7 +60,7 @@ char *stop_getmsg(int error)
 	return (char*)stop_table[index+1];
 }
 
-noreturn stop(int error, int argc, ...)
+noreturn Stop(int error, int argc, ...)
 {
 	va_list ap;
 	int i;
@@ -80,7 +80,7 @@ noreturn stop(int error, int argc, ...)
 	DisplayClear();
 
 	printf(STOP_MSG);
-	printf("%s\n\n", stop_getmsg(error));
+	printf("%s\n\n", StopGetMsg(error));
 
 	va_start(ap, argc);
 
@@ -112,17 +112,17 @@ noreturn stop(int error, int argc, ...)
 
 	printf("Stack Dump:\n\n");
 
-	stop_dump_stack();
+	StackDumpStop();
 
 	HalShutdown();
 }
 
-void assert_dowork(const char *function, const char *file, int line, const char *code)
+void AssertDoWork(const char *function, const char *file, int line, const char *code)
 {
-	stop(0x01, 0x4, function, file, line, code);
+	Stop(0x01, 0x4, function, file, line, code);
 }
 
-void stop_dump_stack(void)
+void StackDumpStop(void)
 {
 	struct stack_frame *frame;
  

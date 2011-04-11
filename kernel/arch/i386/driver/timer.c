@@ -25,5 +25,5 @@ unsigned int HalGetTicks()
 
 void HalTimerInit()
 {
-	HalIrqHandler_Install(0, (void*)HalTimerHandler);
+	HalIrqHandlerInstall(0, (void*)HalTimerHandler);
 }

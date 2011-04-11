@@ -82,8 +82,8 @@ static Header *morecore(unsigned nu)
 	else
 		return NULL;
 
-	cp = (void*) first_frame();
-	/* first_frame() can't fail. */
+	cp = (void*) FirstFrame();
+	/* FirstFrame() can't fail. */
 	up = (Header *) cp;
 	up->s.size = nu;
 	free((void *)(up+1));
@@ -120,43 +120,43 @@ void *kmalloc(unsigned int nbytes)
 
 static unsigned int *frames;
 
-/* set_frame(addr)
+/* SetFrame(addr)
  * Allocates a frame in the frames array. It is assumed to be large enough to
  * hold whatever address you are allocating!
  */
-void set_frame(unsigned int addr)
+void SetFrame(unsigned int addr)
 {
 	unsigned int frame = addr/0x1000;
 	frames[frame/32] |= (unsigned int)0x1<<frame%32;
 }
 
-/* clear_frame(addr)
+/* ClearFrame(addr)
  * Clears a frame in the frames array. It is assumed to be large enough to
  * hold whatever address you are clearing!
  */
-void clear_frame(unsigned int addr)
+void ClearFrame(unsigned int addr)
 {
 	unsigned int frame = addr/0x1000;
 	frames[frame/32] &= ~((unsigned int)0x1<<frame%32);
 }
 
-/* test_frame(addr)
+/* TestFrame(addr)
  * Returns 0 if a frame is free or anything else if a frame is not free. It
  * will not cause data loss if frame is not large enough, but will produce
  * erratic results.
  */
-unsigned int test_frame(unsigned int addr)
+unsigned int TestFrame(unsigned int addr)
 {
 	unsigned int frame = addr / 0x1000;
 	return frames[frame/32] & ((unsigned int)0x1<<frame%32);
 }
 
-unsigned int first_frame()
+unsigned int FirstFrame()
 {
 	unsigned int i;
 
 	for (i = 0; i < end_memory; i+=0x1000) {
-		if (!test_frame(i)) {
+		if (!TestFrame(i)) {
 			return i;
 		}
 	}
@@ -170,10 +170,10 @@ unsigned int first_frame()
 	return 0;
 }
 
-/* alloc_frame(page, is_kernel, is_writable)
+/* AllocFrame(page, is_kernel, is_writable)
  * Obtains a physical frame and allocates it to the page table given.
  */
-int alloc_frame(PageTableEntry *page, int is_kernel, int is_writable)
+int AllocFrame(PageTableEntry *page, int is_kernel, int is_writable)
 {
 	unsigned int addr;
 
@@ -181,8 +181,8 @@ int alloc_frame(PageTableEntry *page, int is_kernel, int is_writable)
 	if (page->address != 0)
 		return -1;
 
-	addr = first_frame();
-	set_frame(addr);
+	addr = FirstFrame();
+	SetFrame(addr);
 
 	assert((addr>>12) < 1048576); // (addr>>12) < 2^20
 
@@ -193,21 +193,21 @@ int alloc_frame(PageTableEntry *page, int is_kernel, int is_writable)
 	return 0;
 }
 
-/* free_frame(page)
+/* FreeFrame(page)
  * Clears the allocation on the physical frame
  */
-void free_frame(PageTableEntry *page)
+void FreeFrame(PageTableEntry *page)
 {
-	clear_frame((unsigned int)page->address<<12);
+	ClearFrame((unsigned int)page->address<<12);
 	page->address = 0x0;
 }
 
 PageDirEntry *cur_page_directory;
 
-/* clear_page_directory(page_directory)
+/* ClearPageDirectory(page_directory)
  * Clears the page directory given.
  */
-void clear_page_directory(PageDirEntry* page_directory)
+void ClearPageDirectory(PageDirEntry* page_directory)
 {
 	unsigned int i;
 	for (i = 0; i < 1024; i++) {
@@ -217,10 +217,10 @@ void clear_page_directory(PageDirEntry* page_directory)
 	}
 }
 
-/* idmap_page_table(page_table, address)
+/* MapPageTable(page_table, address)
  * Identity maps the page table given to address.
  */
-void idmap_page_table(PageTableEntry* page_table, unsigned int address)
+void MapPageTable(PageTableEntry* page_table, unsigned int address)
 {
 	unsigned int i;
 	for (i = 0; i < 1024; i++, address += 0x1000) {
@@ -231,7 +231,7 @@ void idmap_page_table(PageTableEntry* page_table, unsigned int address)
 	}
 }
 
-void init_mm()
+void InitMM()
 {
 	PageTableEntry* page_table;
 
@@ -244,11 +244,11 @@ void init_mm()
 
 	// Create page directory
 	cur_page_directory = (PageDirEntry*) kmalloc_int(sizeof(PageDirEntry)*1024, MALLOC_ALIGN);
-	clear_page_directory(cur_page_directory);
+	ClearPageDirectory(cur_page_directory);
 
 	// Create a page table.
 	page_table = (PageTableEntry*) kmalloc_int(sizeof(PageTableEntry)*1024, MALLOC_ALIGN);
-	idmap_page_table(page_table, 0);
+	MapPageTable(page_table, 0);
 
 	// Add that page table to the page directory.
 	cur_page_directory[0].address = (unsigned int) page_table >> 12;

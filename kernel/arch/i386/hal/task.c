@@ -4,7 +4,7 @@
 #include <k411/core/task.h>
 
 
-struct context_switch_frame {
+struct ContextSwitchFrame {
 	uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
 	uint32_t eflags;
 	uint32_t eip;
@@ -29,7 +29,7 @@ void HalSwitchContext(SchedulerProcess *prev, SchedulerProcess *next)
 }
 
 
-static noreturn initial_process_fun(void)
+static noreturn InitialProcessFun(void)
 {
 	SchedulerProcess *current_process = SchedulerCurProcess();
 
@@ -58,13 +58,13 @@ void HalProcessInit(SchedulerProcess *proc)
 	// make sure the top of the stack is 8 byte aligned for EABI compliance
 	stack_top = ROUNDDOWN(stack_top, 8);
 
-	struct context_switch_frame *frame = (struct context_switch_frame *)(stack_top);
+	struct ContextSwitchFrame *frame = (struct ContextSwitchFrame *)(stack_top);
 	frame--;
 
 	// fill it in
 	memset(frame, 0, sizeof(*frame));
 
-	frame->eip = (uintptr_t) &initial_process_fun;
+	frame->eip = (uintptr_t) &InitialProcessFun;
 	frame->eflags = 0x3002; // IF = 0, NT = 0, IOPL = 3
 	//frame->cs = CODE_SELECTOR;
 	//frame->fs = DATA_SELECTOR;

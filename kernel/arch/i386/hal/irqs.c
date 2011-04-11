@@ -13,7 +13,7 @@ void *irq_routines[16] =
 };
 
 /* This installs a custom IRQ handler for the given IRQ */
-void HalIrqHandler_Install(int irq, void (*handler)(struct regs *r))
+void HalIrqHandlerInstall(int irq, void (*handler)(struct regs *r))
 {
 	if (HalGetTicks() > 0) {
 		if ( irq_routines[irq] ) {
@@ -26,7 +26,7 @@ void HalIrqHandler_Install(int irq, void (*handler)(struct regs *r))
 }
 
 /* This clears the handler for a given IRQ */
-void HalIrqHandler_Uninstall(int irq)
+void HalIrqHandlerUninstall(int irq)
 {
 	if (HalGetTicks() > 0) {
 		printf("Uninstalling IRQ Handler #%i\n", irq);

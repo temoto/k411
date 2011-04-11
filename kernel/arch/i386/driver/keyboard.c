@@ -137,7 +137,7 @@ HalKeyInfo *HalKeyboardReadLetter()
 
 void HalKeyboardInit()
 {
-	HalIrqHandler_Install(1, (void*)HalKeyboardHandler);
+	HalIrqHandlerInstall(1, (void*)HalKeyboardHandler);
 	// The compiler is convinced that unsigned char[0x1000] is not an
 	// lvalue, so all these hacks are needed to compile.
 	buffer = buf;

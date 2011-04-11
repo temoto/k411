@@ -20,7 +20,7 @@ noreturn kmain(void *arg, unsigned int magic) {
 		/* message and halt, but do *not* rely on the multiboot */
 		/* data structure. */
 		HalInit();
-		kstop(STOP_BAD_MULTIBOOT_SIGNATURE, magic, 0, 0, 0);
+		KernelStop(STOP_BAD_MULTIBOOT_SIGNATURE, magic, 0, 0, 0);
 	}
 	mbd = arg;
 	memory_map_t *mmap = (memory_map_t*)mbd->mmap_addr;
