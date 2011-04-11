@@ -2,8 +2,6 @@
 // Copied from dux/metodo @ http://github.com/duckinator/dux
 #define HAL_TASK_H
 
-#include <k411/core/task.h>
-
 // tss_entry_struct and tss_entry_t snagged from http://www.jamesmolloy.co.uk/tutorial_html/10.-User%20Mode.html :P
 
 // A struct describing a Task State Segment.
@@ -41,7 +39,6 @@ struct tss_entry_struct
 typedef struct tss_entry_struct tss_entry_t;
 
 extern void HalGDTLoadEsp0IntoTSS();
-void HalSwitchToUserMode();
 extern void HalTSSFlush();
 
 #endif /* end of include guard: HAL_TASK_H */

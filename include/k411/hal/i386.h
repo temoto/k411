@@ -4,17 +4,6 @@
 
 #include <k411/hal/i386/idt.h>
 
-/* Interrupts */
-void HalDisableInterrupts_(void);
-unsigned long HalDisableInterrupts(void);
-void HalEnableInterrupts(void);
-
-void HalDisableNMI(void);
-void HalEnableNMI(void);
-
-unsigned long HalGetCpuFlags();
-void HalSetCpuFlags(unsigned long);
-
 #include <k411/hal/i386/exceptions.h>
 #include <k411/hal/i386/ports.h>
 #include <k411/hal/i386/isr.h>
