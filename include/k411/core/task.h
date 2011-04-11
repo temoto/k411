@@ -15,6 +15,8 @@ enum ProcessState {
 
 typedef struct SchedulerProcess_s {
 	enum ProcessState state;
+	bool pending_wakeup;
+	uint64_t sleep; // Wake up after this many ticks
 
 	void *stack; // base of stack
 	void *esp;   // saved stack base so it can be destroyed when process is destroyed
@@ -33,6 +35,7 @@ void ProcessResume(SchedulerProcess *proc);
 void ProcessSuspend(SchedulerProcess *proc);
 void ProcessExit(SchedulerProcess *proc);
 bool ProcessSetName(SchedulerProcess* proc, const char *name);
+void ProcessSleep(SchedulerProcess* proc, const uint64_t ticks);
 
 
 void HalProcessInit(SchedulerProcess *proc);

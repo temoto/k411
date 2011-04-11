@@ -22,6 +22,7 @@ int ProcessInit(SchedulerProcess *proc, const char *name, KThreadFun entry_point
 	memset(proc, 0, sizeof(SchedulerProcess));
 
 	proc->state = PROCESS_SUSPENDED;
+	proc->pending_wakeup = false;
 
 	proc->stack = kmalloc(stack_size);
 	if (!proc->stack) {
@@ -65,4 +66,13 @@ bool ProcessSetName(SchedulerProcess* proc, const char *name) {
 	size_t n = strlcpy(proc->name, name, PROCESS_NAME_LENGTH);
 
 	return n > PROCESS_NAME_LENGTH;
+}
+
+
+void ProcessSleep(SchedulerProcess* proc, const uint64_t ticks)
+{
+	proc->state = PROCESS_SUSPENDED;
+	proc->sleep = ticks;
+	proc->pending_wakeup = true;
+	SchedulerHandler();
 }
