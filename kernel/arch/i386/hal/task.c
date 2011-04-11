@@ -29,7 +29,6 @@ void HalSwitchContext(SchedulerProcess *prev, SchedulerProcess *next)
 }
 
 
-static noreturn initial_process_fun(void);
 static noreturn initial_process_fun(void)
 {
 	SchedulerProcess *current_process = SchedulerCurProcess();
