@@ -37,7 +37,8 @@ static noreturn initial_process_fun(void)
 //	dprintf("initial_thread_func: thread %p calling %p with arg %p\n", current_thread, current_thread->entry, current_thread->arg);
 //	dump_thread(current_thread);
 
-	/* exit the implicit critical section we're within */
+	// Exit the implicit critical section we're within
+	HalEnableInterrupts();
 	//TODO:exit_critical_section();
 
 	current_process->entry_point();
