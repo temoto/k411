@@ -3,11 +3,11 @@
 #include <system.h>
 
 unsigned int stack;
-int in_panic = 0;
+static int in_panic = 0;
 
 char *stop_table[7] = {
 	(char*)0x01, "ASSERTION_FAILED",
-	(char*)0x02, "NO_MULTIBOOT",
+	(char*)STOP_BAD_MULTIBOOT_SIGNATURE, "NO_MULTIBOOT",
 	(char*)0x10, "USER_INITIALIZED",
 	(char*)0x0
 };
