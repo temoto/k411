@@ -33,3 +33,13 @@ void HalInit(void)
 	HalEnableInterrupts();
 	printf("Done.\n");
 }
+
+
+inline void HalHalt(void) {
+	__asm volatile ("hlt");
+}
+
+inline void HalPause(void) {
+	// TODO: Check if PAUSE is available, use NOP if not.
+	__asm volatile ("pause");
+}

@@ -14,4 +14,9 @@ void HalBreak(void);
 noreturn HalShutdown(void);
 void HalReboot(void);
 
+
+// CPU
+void HalHalt(void);
+void HalPause(void);
+
 #endif /* end of include guard: HAL_H */
