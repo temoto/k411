@@ -14,7 +14,8 @@ void process_1();
 void process_2();
 
 
-noreturn kmain(void *arg, unsigned int magic) {
+noreturn kmain(void *arg, unsigned int magic)
+{
 	if ( magic != 0x2BADB002 ) {
 		/* Something went not according to specs. Print an error */
 		/* message and halt, but do *not* rely on the multiboot */
@@ -85,14 +86,16 @@ noreturn kmain(void *arg, unsigned int magic) {
 	}
 }
 
-void process_1() {
+void process_1()
+{
 	while (true) {
 		printf("A");
 		ProcessSleep(SchedulerCurProcess(), 1);
 	}
 }
 
-void process_2() {
+void process_2()
+{
 	while (true) {
 		printf("B");
 		ProcessSleep(SchedulerCurProcess(), 1);

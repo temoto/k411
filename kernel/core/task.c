@@ -4,7 +4,8 @@
 #include <string.h>
 
 
-bool kspawn_fun(KThreadFun func) {
+bool kspawn_fun(KThreadFun func)
+{
 	SchedulerProcess proc;
 	ProcessInit(&proc, "kernel task", func, 8 * 1024);
 	proc.state = PROCESS_RUNNING;
@@ -16,7 +17,8 @@ bool kspawn_fun(KThreadFun func) {
 }
 
 
-int ProcessInit(SchedulerProcess *proc, const char *name, KThreadFun entry_point, size_t stack_size) {
+int ProcessInit(SchedulerProcess *proc, const char *name, KThreadFun entry_point, size_t stack_size)
+{
 	assert(NULL != proc);
 
 	memset(proc, 0, sizeof(SchedulerProcess));
@@ -39,19 +41,22 @@ int ProcessInit(SchedulerProcess *proc, const char *name, KThreadFun entry_point
 }
 
 
-void ProcessResume(SchedulerProcess *proc) {
+void ProcessResume(SchedulerProcess *proc)
+{
 	proc->state = PROCESS_RUNNING;
 	SchedulerHandler();
 }
 
 
-void ProcessSuspend(SchedulerProcess *proc) {
+void ProcessSuspend(SchedulerProcess *proc)
+{
 	proc->state = PROCESS_SUSPENDED;
 	SchedulerHandler();
 }
 
 
-void ProcessExit(SchedulerProcess *proc) {
+void ProcessExit(SchedulerProcess *proc)
+{
 	proc->state = PROCESS_FINISHED;
 	SchedulerHandler();
 }
@@ -60,7 +65,8 @@ void ProcessExit(SchedulerProcess *proc) {
 /* Sets process name.
  * Returns boolean flag whether name was truncated to PROCESS_NAME_LENGTH.
  */
-bool ProcessSetName(SchedulerProcess* proc, const char *name) {
+bool ProcessSetName(SchedulerProcess* proc, const char *name)
+{
 	assert(NULL != proc);
 
 	size_t n = strlcpy(proc->name, name, PROCESS_NAME_LENGTH);

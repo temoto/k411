@@ -35,11 +35,13 @@ void HalInit(void)
 }
 
 
-inline void HalHalt(void) {
+inline void HalHalt(void)
+{
 	__asm volatile ("hlt");
 }
 
-inline void HalPause(void) {
+inline void HalPause(void)
+{
 	// TODO: Check if PAUSE is available, use NOP if not.
 	__asm volatile ("pause");
 }
